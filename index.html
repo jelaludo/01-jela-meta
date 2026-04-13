@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jelaludo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+    background: #0a0a0f;
+    color: #c8c8d0;
+    min-height: 100vh;
+    padding: 3rem 1.5rem;
+  }
+
+  header {
+    max-width: 720px;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #e0e0e8;
+    letter-spacing: 0.08em;
+  }
+
+  header p {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  .grid {
+    max-width: 720px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .card {
+    background: #12121a;
+    border: 1px solid #1e1e2a;
+    border-radius: 6px;
+    padding: 1.2rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+
+  .card:hover {
+    border-color: #3a3a50;
+    background: #16161f;
+  }
+
+  .card h2 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #e0e0e8;
+    line-height: 1.3;
+  }
+
+  .card p {
+    font-size: 0.78rem;
+    color: #888;
+    line-height: 1.45;
+  }
+
+  .card .tag {
+    margin-top: auto;
+    font-size: 0.68rem;
+    color: #555;
+    letter-spacing: 0.04em;
+  }
+
+  .deep-link {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    font-size: 0.62rem;
+    font-weight: 500;
+    padding: 2px 6px;
+    background: none;
+    border: 1px solid #2a2a3a;
+    border-radius: 3px;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-decoration: none;
+    line-height: 1.4;
+  }
+
+  .deep-link:hover { color: #aaa; border-color: #4a4a5a; }
+  .deep-link.copied { color: #8b9dc3; border-color: #8b9dc3; }
+
+  @media (max-width: 600px) {
+    body { padding: 1.5rem 0.75rem; }
+    header { margin: 0 auto 1.5rem; }
+    header h1 { font-size: 1.3rem; }
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+    }
+    .card { padding: 0.7rem; gap: 0.3rem; }
+    .card h2 { font-size: 0.78rem; }
+    .card p { font-size: 0.65rem; line-height: 1.35; }
+    .card .tag { font-size: 0.58rem; }
+    .deep-link { top: 0.4rem; right: 0.4rem; font-size: 0.55rem; padding: 1px 4px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>jelaludo</h1>
+  <p>projects</p>
+</header>
+
+<div class="grid">
+
+  <div class="card">
+    <span class="deep-link" data-url="https://jelaludo.github.io/FunctionOfEverything/">link</span>
+    <a href="https://jelaludo.github.io/FunctionOfEverything/" style="text-decoration:none;color:inherit;display:contents">
+    <h2>Function of Everything</h2>
+    <p>Decomposing abstract concepts into their constituent functions</p>
+    <span class="tag">visualization</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="deep-link" data-url="https://jelaludo.github.io/HumanDiscourse/">link</span>
+    <a href="https://jelaludo.github.io/HumanDiscourse/" style="text-decoration:none;color:inherit;display:contents">
+    <h2>Human Discourse</h2>
+    <p>Evolution of human knowledge and discussion platforms</p>
+    <span class="tag">visualization</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="deep-link" data-url="https://jelaludo.github.io/SuomiFinSim/">link</span>
+    <a href="https://jelaludo.github.io/SuomiFinSim/" style="text-decoration:none;color:inherit;display:contents">
+    <h2>Suomi FinSim</h2>
+    <p>Financial simulation — water export strategic model</p>
+    <span class="tag">simulation / finance</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="deep-link" data-url="https://jelaludo.github.io/MappingEnergy/">link</span>
+    <a href="https://jelaludo.github.io/MappingEnergy/" style="text-decoration:none;color:inherit;display:contents">
+    <h2>Mapping Energy</h2>
+    <p>Energy mapping visualization</p>
+    <span class="tag">visualization / data</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="deep-link" data-url="https://jelaludo.github.io/SlaveTradeViz/">link</span>
+    <a href="https://jelaludo.github.io/SlaveTradeViz/" style="text-decoration:none;color:inherit;display:contents">
+    <h2>Slave Trade Viz</h2>
+    <p>Historical slave trade data visualization</p>
+    <span class="tag">visualization / history</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="deep-link" data-url="https://jelaludo.github.io/grapplingprimitives/">link</span>
+    <a href="https://jelaludo.github.io/grapplingprimitives/" style="text-decoration:none;color:inherit;display:contents">
+    <h2>Grappling Primitives</h2>
+    <p>Articles and tools for grappling arts — v2</p>
+    <span class="tag">bjj / tools</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="deep-link" data-url="https://jelaludo.github.io/BJJPricing/">link</span>
+    <a href="https://jelaludo.github.io/BJJPricing/" style="text-decoration:none;color:inherit;display:contents">
+    <h2>BJJ Pricing</h2>
+    <p>Rough estimates of BJJ pricing across regions</p>
+    <span class="tag">bjj / data</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="deep-link" data-url="https://jelaludo.github.io/BJJQuadTreeViz/">link</span>
+    <a href="https://jelaludo.github.io/BJJQuadTreeViz/" style="text-decoration:none;color:inherit;display:contents">
+    <h2>BJJ QuadTree Viz</h2>
+    <p>BJJ concepts visualized as a quadtree</p>
+    <span class="tag">bjj / visualization</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="deep-link" data-url="https://jelaludo.github.io/UdejujiHakai/">link</span>
+    <a href="https://jelaludo.github.io/UdejujiHakai/" style="text-decoration:none;color:inherit;display:contents">
+    <h2>Udejuji Hakai</h2>
+    <p>Armbar breaking mechanics, gamified</p>
+    <span class="tag">bjj / games</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="deep-link" data-url="https://jelaludo.github.io/TokyoFlagsQuizz/">link</span>
+    <a href="https://jelaludo.github.io/TokyoFlagsQuizz/" style="text-decoration:none;color:inherit;display:contents">
+    <h2>Tokyo Flags Quizz</h2>
+    <p>Learn the flags and seals of Tokyo's 23 wards</p>
+    <span class="tag">education / games</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="deep-link" data-url="https://jelaludo.github.io/JibunWoTsukure/">link</span>
+    <a href="https://jelaludo.github.io/JibunWoTsukure/" style="text-decoration:none;color:inherit;display:contents">
+    <h2>Jibun Wo Tsukure</h2>
+    <p>Build yourself — interactive experience</p>
+    <span class="tag">experiment</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="deep-link" data-url="https://jelaludo.github.io/MiniCogDigitSpanTest/">link</span>
+    <a href="https://jelaludo.github.io/MiniCogDigitSpanTest/" style="text-decoration:none;color:inherit;display:contents">
+    <h2>Mini-Cog Digit Span</h2>
+    <p>Cognitive test — word recall and digit recall</p>
+    <span class="tag">health / tools</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="deep-link" data-url="https://jelaludo.github.io/BareBlocks/">link</span>
+    <a href="https://jelaludo.github.io/BareBlocks/" style="text-decoration:none;color:inherit;display:contents">
+    <h2>BareBlocks</h2>
+    <p>Metadata inspector — making image files legible beyond pixels</p>
+    <span class="tag">tools</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="deep-link" data-url="https://jelaludo.github.io/MoFoWeTypography/">link</span>
+    <a href="https://jelaludo.github.io/MoFoWeTypography/" style="text-decoration:none;color:inherit;display:contents">
+    <h2>MoFoWe Typography</h2>
+    <p>Typography experiments</p>
+    <span class="tag">typography / experiment</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="deep-link" data-url="https://jelaludo.github.io/UXAnimCJK/">link</span>
+    <a href="https://jelaludo.github.io/UXAnimCJK/" style="text-decoration:none;color:inherit;display:contents">
+    <h2>UX Anim CJK</h2>
+    <p>UX animations for CJK characters</p>
+    <span class="tag">typography / ux</span>
+    </a>
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('.deep-link').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const url = btn.dataset.url;
+    navigator.clipboard.writeText(url).then(() => {
+      btn.textContent = 'copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'link'; btn.classList.remove('copied'); }, 1500);
+    });
+  });
+});
+</script>
+
+</body>
+</html>
