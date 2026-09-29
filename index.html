@@ -81,6 +81,28 @@
     .pilot-light { width: 10px; height: 10px; border-radius: 50%; background: var(--scan); box-shadow: 0 0 0 2px #13242a, 0 0 11px rgba(185,255,37,.85); }
     .github-link { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 10px; color: #d9e8eb; text-decoration: none; font: .72rem var(--mono); letter-spacing: .07em; transition: .18s; }
     .github-link:hover, .github-link:focus-visible { color: var(--scan); border-color: var(--scan-dim); transform: translateY(-1px); }
+    .featured { padding: 22px 38px 24px; border-bottom: 1px solid #2c4651; background: #091d27; }
+    .featured-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 11px; }
+    .featured-heading h2 { margin: 0; color: var(--scan); font: 700 .78rem var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+    .featured-counter { color: #8da8b1; font: .65rem var(--mono); letter-spacing: .12em; }
+    .carousel { position: relative; }
+    .carousel-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border: 1px solid #36515c; border-radius: 4px; background: #06151d; }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .featured-slide { position: relative; flex: 0 0 100%; min-width: 0; aspect-ratio: 16 / 6.3; scroll-snap-align: start; }
+    .featured-slide a { display: block; height: 100%; color: inherit; text-decoration: none; }
+    .featured-slide img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
+    .featured-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 20px 25px; pointer-events: none; background: linear-gradient(180deg,rgba(3,12,18,.86),transparent 34% 62%,rgba(3,12,18,.9)); }
+    .featured-label { color: var(--scan); font: .63rem var(--mono); letter-spacing: .18em; text-transform: uppercase; }
+    .featured-overlay h3 { width: fit-content; max-width: 74%; margin: 5px 0 0; color: #f0fbfc; font: 700 clamp(1.2rem,3vw,2.4rem)/1.08 var(--mono); text-shadow: 0 2px 18px #061018; }
+    .featured-overlay p { max-width: 68%; margin: 0; color: #d9e7e9; font-size: .96rem; text-shadow: 0 1px 8px #061018; }
+    .carousel-nav { position: absolute; z-index: 1; top: 50%; width: 38px; height: 46px; transform: translateY(-50%); border: 1px solid #62818d; border-radius: 3px; background: rgba(5,20,28,.82); color: #e9f5f7; cursor: pointer; font: 1.5rem var(--mono); }
+    .carousel-nav:hover, .carousel-nav:focus-visible { border-color: var(--scan); color: var(--scan); }
+    .carousel-nav.prev { left: 11px; } .carousel-nav.next { right: 11px; }
+    .carousel-dots { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; }
+    .carousel-dot { width: 27px; height: 14px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+    .carousel-dot::after { content: ""; display: block; height: 4px; background: #3a5964; border-radius: 2px; }
+    .carousel-dot[aria-current="true"]::after { background: var(--scan); box-shadow: 0 0 9px rgba(185,255,37,.5); }
+    .carousel-dot:focus-visible { outline: 2px solid var(--scan); outline-offset: 3px; }
     .controls {
       display: grid; grid-template-columns: 1fr minmax(230px,340px); gap: 20px; align-items: end;
       padding: 18px 38px; border-bottom: 1px solid #2c4651; background: rgba(7,22,30,.8);
@@ -114,6 +136,9 @@
     .project-card[data-field="systems"] { --accent: #54b8ff; }
     .project-card[data-field="tools"] { --accent: #37e0c1; }
     .project-card:hover, .project-card:focus-within { border-color: var(--accent); transform: translateY(-2px); box-shadow: inset 0 1px rgba(255,255,255,.08),0 15px 30px rgba(0,0,0,.28); }
+    .card-shot { display: block; position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #06151d; border-bottom: 1px solid #2f4a56; }
+    .card-shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 42%; transition: transform .25s ease; }
+    .card-shot:hover img, .card-shot:focus-visible img { transform: scale(1.035); }
     .card-rail { display: flex; align-items: center; justify-content: space-between; padding: 8px 11px; border-bottom: 1px solid #2f4a56; background: #0b1e27; }
     .project-id { color: var(--accent); font-size: .62rem; } .field-mark { color: #6f8993; font: .6rem var(--mono); text-transform: uppercase; letter-spacing: .09em; }
     .card-body { display: flex; flex: 1; flex-direction: column; padding: 16px 16px 13px; }
@@ -126,6 +151,7 @@
     .meter-label { display: flex; justify-content: space-between; margin-bottom: 6px; color: #718b94; font-size: .57rem; }
     .meter-label strong { color: var(--scan); font-weight: 500; }
     .segments { display: grid; grid-template-columns: repeat(4,1fr); gap: 4px; }
+    .segments.percent { grid-template-columns: repeat(10,1fr); }
     .segment { height: 8px; border: 1px solid #31505d; border-radius: 1px; background: #06151d; box-shadow: inset 0 1px 3px rgba(0,0,0,.7); }
     .segment.on { border-color: var(--accent); background: linear-gradient(180deg,#d7f5ff,var(--accent)); box-shadow: 0 0 8px rgba(84,184,255,.3); }
     .card-links { display: flex; gap: 6px; }
@@ -138,7 +164,8 @@
     .footer-note { margin: 0; color: #708b94; font-size: .6rem; line-height: 1.7; } .footer-note strong { color: #aac0c6; font-weight: 500; }
     [hidden] { display: none !important; }
     @media (max-width:1040px) { .masthead{grid-template-columns:1fr 1fr}.utility-stack{grid-column:1/-1;grid-template-columns:1fr 1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
-    @media (max-width:720px) { .shell{width:min(100% - 16px,680px);margin-top:8px}.masthead{grid-template-columns:1fr;gap:18px;padding:30px 20px 20px}.utility-stack{grid-column:auto;grid-template-columns:1fr 1fr}.controls{grid-template-columns:1fr;padding:16px 20px}main{padding:20px}.grid{grid-template-columns:1fr}.project-card{min-height:260px}.footer{flex-direction:column;padding:15px 20px} }
+    @media (max-width:720px) { .shell{width:min(100% - 16px,680px);margin-top:8px}.masthead{grid-template-columns:1fr;gap:18px;padding:30px 20px 20px}.utility-stack{grid-column:auto;grid-template-columns:1fr 1fr}.featured{padding:18px 20px}.featured-slide{aspect-ratio:16/9}.featured-overlay{padding:14px 18px}.featured-overlay p{font-size:.78rem;max-width:80%}.controls{grid-template-columns:1fr;padding:16px 20px}main{padding:20px}.grid{grid-template-columns:1fr}.project-card{min-height:260px}.footer{flex-direction:column;padding:15px 20px} }
+    @media (max-width:560px) { .featured-slide{aspect-ratio:4/3}.featured-overlay h3{max-width:88%;font-size:1.25rem}.featured-overlay p{display:none}.carousel-nav{width:32px;height:40px}.carousel-nav.prev{left:6px}.carousel-nav.next{right:6px} }
     @media (max-width:430px) { .utility-stack{grid-template-columns:1fr}.filters{display:grid;grid-template-columns:repeat(2,1fr)}.filter-button{padding-inline:7px}.rack-heading{align-items:flex-start;flex-direction:column;gap:3px}.meter-row{grid-template-columns:1fr}.card-links{justify-content:flex-end} }
     @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important} }
   </style>
@@ -155,10 +182,19 @@
         <div class="vu-window" aria-hidden="true"><div class="vu-scale"><span>−20</span><span>−10</span><span>−5</span><span>0</span><span>+3</span></div></div>
       </div>
       <div class="utility-stack">
-        <div class="status-plate"><span class="pilot-light" aria-hidden="true"></span><span>25 public circuits<br>Tokyo / JST</span></div>
+        <div class="status-plate"><span class="pilot-light" aria-hidden="true"></span><span>27 public circuits<br>Tokyo / JST</span></div>
         <a class="github-link" href="https://github.com/jelaludo" target="_blank" rel="noopener"><span>GitHub console</span><span aria-hidden="true">↗</span></a>
       </div>
     </header>
+    <section class="featured" aria-labelledby="featured-title">
+      <div class="featured-heading"><h2 id="featured-title">Featured transmissions</h2><span class="featured-counter" id="featured-count" aria-live="polite"></span></div>
+      <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Featured projects">
+        <button class="carousel-nav prev" id="featured-prev" type="button" aria-label="Previous featured project">‹</button>
+        <div class="carousel-track" id="featured-track"></div>
+        <button class="carousel-nav next" id="featured-next" type="button" aria-label="Next featured project">›</button>
+      </div>
+      <div class="carousel-dots" id="featured-dots" aria-label="Choose a featured project"></div>
+    </section>
     <section class="controls" aria-label="Project controls">
       <div>
         <span class="filter-label">Signal bank</span>
@@ -176,7 +212,7 @@
       </div>
     </section>
     <main>
-      <div class="rack-heading"><h2>Public project rack</h2><span class="count-readout" id="count" aria-live="polite">25 / 25 signals</span></div>
+      <div class="rack-heading"><h2>Public project rack</h2><span class="count-readout" id="count" aria-live="polite">27 / 27 signals</span></div>
       <div class="grid" id="project-grid"></div>
       <div class="empty-state" id="empty">No signal on this frequency.</div>
     </main>
@@ -187,6 +223,8 @@
   </div>
   <script>
     const projects = [
+      {title:"Lab Crystals",slug:"lab-crystals",field:"worlds",state:2,progress:40,desc:"A procedural crystal playground with adjustable shapes, glass and energy materials, and mesh exports for game assets.",tags:["game assets","misc"]},
+      {title:"Twirling Lights",slug:"lab-twirling-lights",field:"worlds",state:3,desc:"A WebGL light lab for gravitational attractors, orbital motion, comets and particle explosions.",tags:["WebGL","particles","simulation"]},
       {title:"Sentry Towers A6",slug:"SentryTowers_A6",field:"worlds",state:3,desc:"Eighteen modular sentry-tower GLBs with articulated parts and an interactive 3D preview.",tags:["3D","GLB","worldbuilding"]},
       {title:"Suji Galore",slug:"suji-galore",field:"type",state:3,desc:"A playground for numbers, constructed numerals and visual counting systems.",tags:["numerals","playground","visual"]},
       {title:"GameDev Functions",slug:"GameDevFunctions",field:"systems",state:4,desc:"An operational map of game-development roles, handoffs, engine choices and studio maturity.",tags:["game dev","reference","audit"]},
@@ -213,17 +251,51 @@
       {title:"Partner Assessment",slug:"bjj-partner-assessment",field:"grappling",state:3,desc:"Training-partner qualities visualized as connected assessment patterns.",tags:["BJJ","assessment","visualization"],live:false},
       {title:"Jiu Jitsu Jungle",slug:"JJJ_CombatSimulator",field:"grappling",state:3,desc:"A browser-based combat simulator for the Jiu Jitsu Jungle game system.",tags:["BJJ","combat","simulation"],live:"https://jjj-combat-simulator.vercel.app"}
     ];
+    const shotAlt = {
+      "lab-crystals":"Faceted crystal and material controls in the Facet lab",
+      "lab-twirling-lights":"Purple particle rings around a gravitational attractor",
+      "SentryTowers_A6":"Modular sentry tower models in the model workshop",
+      "suji-galore":"Gallery of experimental visual numeral systems",
+      "GameDevFunctions":"Game development functions and handoff dashboard",
+      "ephemeralmsg":"Handwritten message appearing in dissolving ink",
+      "Stalsfar_Landing":"Glowing engine plumes in the Stålsfär landing game",
+      "stalheart-sphere-lab":"Colored spherical grid model and laboratory controls",
+      "hokankoushi":"Lattice sheet folding into a three-dimensional surface",
+      "grapplingprimitives":"Grappling Primitives principles with Japanese calligraphy",
+      "TokyoFlagsQuizz":"Interactive grid of Tokyo ward emblems",
+      "MoFoWeTypography":"Japanese typography specimen and reading layout",
+      "SuomiFinSim":"Financial simulation dashboard with projections and charts",
+      "UXAnimCJK":"Colored stroke animation for Japanese characters",
+      "HumanDiscourse":"Interactive discourse visualization with topic controls",
+      "MappingEnergy":"Energy unit scale from watts to megawatts",
+      "FunctionOfEverything":"Concept function diagram with connected nodes",
+      "SlaveTradeViz":"Colored historical comparison blocks for systems of slavery",
+      "JibunWoTsukure":"Interactive body building diagram and controls",
+      "MiniCogDigitSpanTest":"Memory and attention screening interface",
+      "BJJPricing":"Regional BJJ pricing comparison charts",
+      "BJJQuadTreeViz":"Colored quadtree map of grappling concepts",
+      "UdejujiHakai":"Interactive armbar mechanics diagram",
+      "BareBlocks":"Image metadata inspector showing parsed file details",
+      "CentroidMatrixGuess":"Dot grid in the centroid guessing game",
+      "bjj-partner-assessment":"Training partner assessment scores and colored bars",
+      "JJJ_CombatSimulator":"Character selection in the Jiu Jitsu Jungle simulator"
+    };
+    const featuredSlugs = ["lab-crystals","lab-twirling-lights","SentryTowers_A6","Stalsfar_Landing","suji-galore","grapplingprimitives"];
     const stateNames=["","sketch","bench","working","released"];
     const fieldNames={worlds:"worlds",systems:"systems",grappling:"grappling",type:"type / ux",tools:"tools"};
     const grid=document.querySelector("#project-grid"),count=document.querySelector("#count"),empty=document.querySelector("#empty"),search=document.querySelector("#search"),filters=[...document.querySelectorAll(".filter-button")];
     let activeFilter="all";
     function projectCard(project,index){
       const live=project.live===false?null:(project.live||`https://jelaludo.github.io/${project.slug}/`),repo=`https://github.com/jelaludo/${project.slug}`;
+      const shot=`screenshots/${project.slug}.jpg`, destination=live||repo;
       const searchText=[project.title,project.desc,project.field,...project.tags].join(" ").toLowerCase();
-      const segments=Array.from({length:4},(_,step)=>`<span class="segment${step<project.state?" on":""}"></span>`).join("");
+      const hasProgress=Number.isFinite(project.progress);
+      const buildLabel=hasProgress?`${project.progress}% done`:stateNames[project.state];
+      const buildAria=hasProgress?buildLabel:`${stateNames[project.state]}, ${project.state} of 4`;
+      const segments=Array.from({length:hasProgress?10:4},(_,step)=>`<span class="segment${step<(hasProgress?project.progress/10:project.state)?" on":""}"></span>`).join("");
       const tags=project.tags.map(tag=>`<span class="tag">${tag}</span>`).join("");
       const liveLink=live?`<a class="card-link live" href="${live}" target="_blank" rel="noopener" aria-label="Open ${project.title} live site">Live ↗</a>`:"";
-      return `<article class="project-card" data-field="${project.field}" data-search="${searchText}"><div class="card-rail"><span class="project-id">CH ${String(index+1).padStart(2,"0")}</span><span class="field-mark">${fieldNames[project.field]}</span></div><div class="card-body"><h3>${project.title}</h3><p class="description">${project.desc}</p><div class="tags">${tags}</div></div><div class="card-foot"><div class="meter-row"><div><div class="meter-label"><span>Build state</span><strong>${stateNames[project.state]}</strong></div><div class="segments" aria-label="Build state: ${stateNames[project.state]}, ${project.state} of 4">${segments}</div></div><div class="card-links">${liveLink}<a class="card-link" href="${repo}" target="_blank" rel="noopener" aria-label="Open ${project.title} source repository">Code</a></div></div></div></article>`;
+      return `<article class="project-card" data-field="${project.field}" data-search="${searchText}"><div class="card-rail"><span class="project-id">CH ${String(index+1).padStart(2,"0")}</span><span class="field-mark">${fieldNames[project.field]}</span></div><a class="card-shot" href="${destination}" target="_blank" rel="noopener" aria-label="Open ${project.title}"><img src="${shot}" alt="${shotAlt[project.slug]}" loading="lazy" width="1365" height="850"></a><div class="card-body"><h3>${project.title}</h3><p class="description">${project.desc}</p><div class="tags">${tags}</div></div><div class="card-foot"><div class="meter-row"><div><div class="meter-label"><span>Build state</span><strong>${buildLabel}</strong></div><div class="segments${hasProgress?" percent":""}" aria-label="Build state: ${buildAria}">${segments}</div></div><div class="card-links">${liveLink}<a class="card-link" href="${repo}" target="_blank" rel="noopener" aria-label="Open ${project.title} source repository">Code</a></div></div></div></article>`;
     }
     grid.innerHTML=projects.map(projectCard).join("");
     const cards=[...grid.querySelectorAll(".project-card")];
@@ -234,6 +306,39 @@
     }
     filters.forEach(button=>button.addEventListener("click",()=>{activeFilter=button.dataset.filter;filters.forEach(item=>item.setAttribute("aria-pressed",String(item===button)));applyFilters();}));
     search.addEventListener("input",applyFilters);
+    const featured=featuredSlugs.map(slug=>projects.find(project=>project.slug===slug));
+    const carousel=document.querySelector("#carousel"),track=document.querySelector("#featured-track"),dots=document.querySelector("#featured-dots"),featuredCount=document.querySelector("#featured-count");
+    track.innerHTML=featured.map((project,index)=>{
+      const live=project.live||`https://jelaludo.github.io/${project.slug}/`;
+      return `<article class="featured-slide" aria-roledescription="slide" aria-label="${index+1} of ${featured.length}: ${project.title}"><a href="${live}" target="_blank" rel="noopener" aria-label="Open ${project.title} live site"><img src="screenshots/${project.slug}.jpg" alt="${shotAlt[project.slug]}" width="1365" height="850" ${index?'loading="lazy"':'fetchpriority="high"'}><div class="featured-overlay"><div><span class="featured-label">Featured / ${String(index+1).padStart(2,"0")}</span><h3>${project.title}</h3></div><p>${project.desc}</p></div></a></article>`;
+    }).join("");
+    dots.innerHTML=featured.map((project,index)=>`<button class="carousel-dot" type="button" aria-label="Show ${project.title}" aria-current="${index===0}" data-slide="${index}"></button>`).join("");
+    let currentSlide=0,autoTimer,scrollTimer;
+    const dotButtons=[...dots.querySelectorAll("button")];
+    function setSlide(index,behavior="smooth"){
+      currentSlide=(index+featured.length)%featured.length;
+      track.scrollTo({left:currentSlide*track.clientWidth,behavior});
+      dotButtons.forEach((button,i)=>button.setAttribute("aria-current",String(i===currentSlide)));
+      featuredCount.textContent=`${String(currentSlide+1).padStart(2,"0")} / ${String(featured.length).padStart(2,"0")}`;
+    }
+    function stopAuto(){clearInterval(autoTimer);autoTimer=undefined;}
+    function startAuto(){
+      stopAuto();
+      if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!document.hidden&&!carousel.matches(":hover")&&!carousel.contains(document.activeElement)) autoTimer=setInterval(()=>setSlide(currentSlide+1),5500);
+    }
+    function chooseSlide(index){setSlide(index);startAuto();}
+    document.querySelector("#featured-prev").addEventListener("click",()=>chooseSlide(currentSlide-1));
+    document.querySelector("#featured-next").addEventListener("click",()=>chooseSlide(currentSlide+1));
+    dotButtons.forEach(button=>button.addEventListener("click",()=>chooseSlide(Number(button.dataset.slide))));
+    track.addEventListener("scroll",()=>{clearTimeout(scrollTimer);scrollTimer=setTimeout(()=>setSlide(Math.round(track.scrollLeft/track.clientWidth),"instant"),100);});
+    carousel.addEventListener("keydown",event=>{if(event.key==="ArrowLeft"||event.key==="ArrowRight"){event.preventDefault();chooseSlide(currentSlide+(event.key==="ArrowRight"?1:-1));}});
+    carousel.addEventListener("mouseenter",stopAuto);
+    carousel.addEventListener("mouseleave",startAuto);
+    carousel.addEventListener("focusin",stopAuto);
+    carousel.addEventListener("focusout",()=>setTimeout(startAuto,0));
+    document.addEventListener("visibilitychange",startAuto);
+    addEventListener("resize",()=>setSlide(currentSlide,"instant"));
+    setSlide(0,"instant");startAuto();
   </script>
 </body>
 </html>
